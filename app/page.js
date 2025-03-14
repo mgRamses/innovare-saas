@@ -6,9 +6,6 @@ import productDemo from "./productDemo.jpeg"
 import { auth } from "@/auth"
 
 export default async function Home() {
-  const isLoggedIn = true;
-  const name = "Marc";
-
   const session = await auth()
   console.log(session)
 
