@@ -5,6 +5,8 @@ import { auth } from "@/auth";
 import connectMongo from "@/libs/mongoose";
 import User from "@/models/User";
 import Board from "@/models/Board";
+import ButtonCheckout from "@/components/ButtonCheckout";
+import ButtonPortal from "@/components/ButtonPortal";
 
 async function getUser() {
   const session = await auth();
@@ -18,7 +20,10 @@ export default async function Dashboard() {
   return (
     <main className="bg-base-200 min-h-screen">
       {/* HEDAER */}
-      <section className="bg-base-100 max-w-5xl mx-auto px-5 py-3 flex justify-end">
+      <section className="bg-base-100 max-w-5xl mx-auto px-5 py-3 flex justify-between">
+        {
+          user.hasAccess ? <ButtonPortal /> : <ButtonCheckout />
+        }
         <ButtonLogout />
       </section>
 

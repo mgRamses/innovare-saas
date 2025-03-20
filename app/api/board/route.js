@@ -24,9 +24,13 @@ export async function POST(req) {
     await connectMongo();
 
     const user = await User.findById(session.user.id);
-    console.log("=== USER INFORMATION ===");
-    console.log(user);
-    console.log("=== USER INFORMATION ===");
+
+    if (!user.hasAccess) {
+      return NextResponse.json(
+        { error: "Please subscribe first" },
+        { status: 403 }
+      );
+    }
 
     const board = await Board.create({
       userId: user._id,
@@ -60,16 +64,24 @@ export async function DELETE(req) {
       return NextResponse.json({ error: "Not authorized" }, { status: 401 });
     }
 
+    const user = await User.findById(session?.user?.id);
+
+    if (!user.hasAccess) {
+      return NextResponse.json(
+        { error: "Please subscribe first" },
+        { status: 403 }
+      );
+    }
+
     await Board.deleteOne({
       _id: boardId,
-      userId: session?.user?.id
-    })
+      userId: session?.user?.id,
+    });
 
-    const user= await User.findById(session?.user?.id)
-    user.boards.filter((id) => id.toString() !== boardId)
+    user.boards.filter((id) => id.toString() !== boardId);
     await user.save();
 
-    return NextResponse.json({})
+    return NextResponse.json({});
   } catch (e) {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }
