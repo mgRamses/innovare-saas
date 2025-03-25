@@ -20,11 +20,13 @@ export default async function Dashboard() {
   return (
     <main className="bg-base-200 min-h-screen">
       {/* HEDAER */}
-      <section className="bg-base-100 max-w-5xl mx-auto px-5 py-3 flex justify-between">
-        {
-          user.hasAccess ? <ButtonPortal /> : <ButtonCheckout />
-        }
-        <ButtonLogout />
+      <section className="bg-base-100  ">
+        <dvi className="max-w-5xl mx-auto flex justify-between px-5 py-3">
+          {
+            user.hasAccess ? <ButtonPortal /> : <ButtonCheckout />
+          }
+          <ButtonLogout />
+        </dvi>
       </section>
 
       <section className="max-w-5xl mx-auto px-5 py-12">

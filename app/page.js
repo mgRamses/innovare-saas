@@ -64,7 +64,7 @@ export default async function Home() {
           <h2 className="text-3xl lg:text-4xl font-extrabold mb-12 text-center">
             A pricing that adapts to your needs
           </h2>
-          <div className="p-8 bg-base-100 max-w-96 rounded-3xl max-auto space-y-6">
+          <div className="p-8 bg-base-100 max-w-96 rounded-3xl max-auto space-y-6 m-auto">
             <div className="flex gap-2 items-baseline">
               <div className="text-4xl font-black">$19</div>
               <div className="uppercase text-sm font-medium opacity-60">
@@ -78,14 +78,16 @@ export default async function Home() {
               })}
             </ul>
 
-            <ButtonLogin session={session} />
+            <div className="flex flex-col items-center">
+              <ButtonLogin session={session} />
+            </div>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="bg-base-200" id="faq">
-        <div className="py-32 px-8 mx-w-3xl mx-auto">
+        <div className="py-18 px-8 mx-w-3xl mx-auto">
           <p className="text-sm uppercase font-medium text-center">FAQ</p>
           <h2 className="text-center text-3xl lg:text-4xl font-extrabold mb-12">
             Frequently Asked Questions
