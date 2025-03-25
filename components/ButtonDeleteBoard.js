@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 const ButtonDeleteBoard = ({ boardId }) => {
     const router = useRouter()
   const handleDeleteBoard = async () => {
-    console.log(boardId)
     try {
       const isUserSure = window.confirm(
         "Are you sure you want to delete this board"
@@ -39,6 +38,7 @@ const ButtonDeleteBoard = ({ boardId }) => {
           clipRule="evenodd"
         />
       </svg>
+      Delete
     </button>
   );
 };

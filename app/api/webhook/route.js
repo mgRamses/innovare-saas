@@ -19,8 +19,6 @@ export async function POST(req) {
 
     const { data, type } = event;
 
-    console.log(type);
-
     if (type === "checkout.session.completed") {
       await connectMongo();
       const user = await User.findById(data.object.client_reference_id);

@@ -32,7 +32,7 @@ export default async function Dashboard() {
 
         <div>
           <h1 className="font-extrabold text-xl mb-4">
-            {user.boards.length} Boards --
+            {user.boards.length} Boards
           </h1>
 
           <ul className="space-y-4">

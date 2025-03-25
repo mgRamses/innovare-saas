@@ -2,12 +2,11 @@ import ButtonLogin from "@/components/ButtonLogin";
 import { ListItem } from "@/components/ListItem";
 import { FAQListItem } from "@/components/FAQListItem";
 import Image from "next/image";
-import productDemo from "./productDemo.jpeg"
-import { auth } from "@/auth"
+import productDemo from "./productDemo.jpeg";
+import { auth } from "@/auth";
 
 export default async function Home() {
-  const session = await auth()
-  console.log(session)
+  const session = await auth();
 
   const pricingFeaturesList = [
     "Collect customer feedback",
@@ -38,7 +37,11 @@ export default async function Home() {
 
       {/* HERO */}
       <section className="text-center lg:text-left py-32 px-8 max-w-5xl mx-auto flex flex-col lg:flex-row gap-14 items-center">
-        <Image src={productDemo} alt="Product demo" className="w-96 rounded-xl"/>
+        <Image
+          src={productDemo}
+          alt="Product demo"
+          className="w-96 rounded-xl"
+        />
         <div>
           <h1 className="text-4xl font-extrabold mb-6">
             Collect customer feedback to build better products
@@ -90,9 +93,21 @@ export default async function Home() {
 
           <ul className="max-w-lg mx-auto">
             {[
-              { question: "What do I get exactly?", answer: "A" },
-              { question: "Can I get a refund", answer: "A" },
-              { question: "I hace another question", answer: "A" },
+              {
+                question: "What do I get exactly?",
+                answer:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae ligula consectetur dui ullamcorper malesuada. Nullam ullamcorper lorem eget tincidunt mattis. Curabitur nec lacinia orci, nec tristique mauris. Quisque elit sapien, dictum in consectetur sit amet, elementum nec purus. Aliquam vitae interdum quam. Mauris suscipit ante odio. Nulla laoreet lorem lectus, fermentum hendrerit sapien dictum et. Suspendisse accumsan rutrum eleifend. Pellentesque aliquet lacus at eros viverra mattis.",
+              },
+              {
+                question: "Can I get a refund",
+                answer:
+                  "Proin sit amet tortor nibh. Donec vel mattis nibh. Nunc porttitor posuere mauris nec cursus. Cras vestibulum bibendum condimentum. Quisque posuere imperdiet molestie. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+              },
+              {
+                question: "I have another question",
+                answer:
+                  "Phasellus convallis velit at lacus tincidunt finibus. Integer lacinia metus eget sem pharetra, sed ullamcorper quam ornare. Nullam auctor nulla at nisi tincidunt, sed tristique mi cursus. Proin eleifend ligula nec lectus aliquet finibus.",
+              },
             ].map((qa) => (
               <FAQListItem key={qa.question} qa={qa} />
             ))}

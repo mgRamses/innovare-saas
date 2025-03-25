@@ -17,7 +17,6 @@ const ButtonCheckout = () => {
         })
 
         const checkoutUrl = response.data.url;
-        console.log(checkoutUrl)
         window.location.href = checkoutUrl
     } catch (error) {
       const errorMessage =

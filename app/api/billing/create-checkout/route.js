@@ -20,7 +20,6 @@ export async function POST(req) {
     const user = await User.findById(session.user.id);
 
     const stripe = new Stripe(process.env.STRIPE_API_KEY);
-    //console.log({stripe})
 
     const stripeCheckoutSession = await stripe.checkout.sessions.create({
       mode: "subscription",
@@ -35,8 +34,6 @@ export async function POST(req) {
       customer_email: user.email,
       client_reference_id: user._id.toString(),
     });
-
-    console.log({stripeCheckoutSession})
 
     return NextResponse.json({ url: stripeCheckoutSession.url });
   } catch (error) {

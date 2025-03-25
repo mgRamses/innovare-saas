@@ -1,0 +1,73 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { toast } from "react-hot-toast";
+import axios from "axios";
+
+const ButtonVote = ({ postId, initialVotesCounter }) => {
+  const localStorageKeyName = `codefastSaaS-hasVoted-${postId}`;
+
+  const [hasVoted, setHasVoted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [votesCounter, setVotesCounter] = useState(initialVotesCounter);
+
+  useEffect(() => {
+    setHasVoted(localStorage.getItem(localStorageKeyName) === "true");
+  }, []);
+
+  const handleVote = async () => {
+    if (isLoading) return;
+
+    setIsLoading(true);
+
+    try {
+      if (hasVoted) {
+        setHasVoted(false);
+        setVotesCounter(votesCounter - 1);
+        toast.success("Vote removed!");
+        await axios.delete(`/api/vote?postId=${postId}`);
+        localStorage.removeItem(localStorageKeyName);
+      } else {
+        setHasVoted(true);
+        setVotesCounter(votesCounter + 1);
+        toast.success("Upvoted!");
+        await axios.post(`/api/vote?postId=${postId}`);
+        localStorage.setItem(localStorageKeyName, "true");
+      }
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.error || error.message || "Something went wrong";
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <button
+      className={`group border px-4 py-2 rounded-xl text-lg duration-200 ${
+        hasVoted
+          ? "bg-primary text-primary-content"
+          : "bg-base-100 text-base-content hover:border-base-content/25"
+      }`}
+      onClick={handleVote}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="size-6 group-hover:-translate-y-1 duration-200"
+      >
+        <path
+          fillRule="evenodd"
+          d="M9.47 6.47a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 1 1-1.06 1.06L10 8.06l-3.72 3.72a.75.75 0 0 1-1.06-1.06l4.25-4.25Z"
+          clipRule="evenodd"
+        />
+      </svg>
+
+      <div>{votesCounter}</div>
+    </button>
+  );
+};
+
+export default ButtonVote;

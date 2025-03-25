@@ -19,7 +19,6 @@ const FormNewBoard = () => {
 
     try {
       const data = await axios.post("/api/board", { name });
-      console.log(data);
 
       setName("");
 
@@ -37,7 +36,7 @@ const FormNewBoard = () => {
 
   return (
     <form
-      className="bg-base-100 p-8 rounded-3xl space-y-8"
+      className="bg-base-100 p-8 rounded-3xl space-y-8 mb-6"
       onSubmit={handleSubmit}
     >
       <p className="font-bold text-lg">Create a new feedback board</p>
