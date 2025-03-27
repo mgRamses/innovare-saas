@@ -22,9 +22,7 @@ export default async function Dashboard() {
       {/* HEDAER */}
       <section className="bg-base-100  ">
         <dvi className="max-w-5xl mx-auto flex justify-between px-5 py-3">
-          {
-            user.hasAccess ? <ButtonPortal /> : <ButtonCheckout />
-          }
+          {user.hasAccess ? <ButtonPortal /> : <ButtonCheckout />}
           <ButtonLogout />
         </dvi>
       </section>
@@ -40,12 +38,11 @@ export default async function Dashboard() {
           <ul className="space-y-4">
             {user.boards.map((board) => {
               return (
-                <li
-                  key={board._id}
-                  className="bg-base-100 p-6 rounded-3xl hover:bg-neutral hover:text-neutral-content duration-200"
-                >
-                  <Link href={`/dashboard/b/${board._id}`}>{board.name}</Link>
-                </li>
+                <Link href={`/dashboard/b/${board._id}`} key={board._id}>
+                  <li className="bg-base-100 p-6 mb-3 rounded-3xl hover:bg-neutral hover:text-neutral-content duration-200">
+                    {board.name}
+                  </li>
+                </Link>
               );
             })}
           </ul>
