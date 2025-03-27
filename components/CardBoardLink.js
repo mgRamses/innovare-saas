@@ -5,7 +5,7 @@ const CardBoardLink = ({ boardId }) => {
   const boardLink = `${
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://codefastsaas.com"
+      : "https://ramsesdev.com"
   }/b/${boardId}`;
 
   const copyLink = () => {
